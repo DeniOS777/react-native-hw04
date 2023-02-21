@@ -14,7 +14,7 @@ import { styles } from './RegistrationScreen.styled';
 
 const imagePath = require('../../../assets/images/bg-photo.png');
 
-export const RegistrationScreen = () => {
+export const RegistrationScreen = ({ navigation }) => {
   const [login, setLogin] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -168,7 +168,15 @@ export const RegistrationScreen = () => {
                 <Text style={styles.buttonTitle}>Зарегистрироваться</Text>
               </TouchableOpacity>
 
-              <Text style={styles.redirectTitle}>Уже есть аккаунт? Войти</Text>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('Login')}
+                activeOpacity={0.6}
+                style={styles.buttonRedirect}
+              >
+                <Text style={styles.redirectTitle}>
+                  Уже есть аккаунт? Войти
+                </Text>
+              </TouchableOpacity>
             </View>
           </KeyboardAvoidingView>
         </ImageBackground>

@@ -14,7 +14,7 @@ import { styles } from './LoginScreen.styled';
 
 const imagePath = require('../../../assets/images/bg-photo.png');
 
-export const LoginScreen = () => {
+export const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isFocusedEmail, setFocusedEmail] = useState(false);
@@ -125,9 +125,15 @@ export const LoginScreen = () => {
                 <Text style={styles.buttonTitle}>Войти</Text>
               </TouchableOpacity>
 
-              <Text style={styles.redirectTitle}>
-                Нет аккаунта? Зарегистрироваться
-              </Text>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('Registration')}
+                style={styles.buttonRedirect}
+                activeOpacity={0.6}
+              >
+                <Text style={styles.redirectTitle}>
+                  Нет аккаунта? Зарегистрироваться
+                </Text>
+              </TouchableOpacity>
             </View>
           </KeyboardAvoidingView>
         </ImageBackground>

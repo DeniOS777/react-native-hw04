@@ -1,4 +1,6 @@
 import React, { useCallback } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import * as SplashScreen from 'expo-splash-screen';
 import { useFonts } from 'expo-font';
 import { RegistrationScreen } from './src/Screens/RegistrationScreen';
@@ -10,6 +12,8 @@ const fontsMap = {
 };
 
 SplashScreen.preventAutoHideAsync();
+
+const AuthStack = createStackNavigator();
 
 export default function App() {
   const [fontsLoaded] = useFonts(fontsMap);
@@ -27,9 +31,19 @@ export default function App() {
   }
 
   return (
-    <>
-      <RegistrationScreen />
-      {/* <LoginScreen /> */}
-    </>
+    <NavigationContainer>
+      <AuthStack.Navigator initialRouteName="RegistrationScreen">
+        <AuthStack.Screen
+          options={{ headerShown: false }}
+          name="Registration"
+          component={RegistrationScreen}
+        />
+        <AuthStack.Screen
+          options={{ headerShown: false }}
+          name="Login"
+          component={LoginScreen}
+        />
+      </AuthStack.Navigator>
+    </NavigationContainer>
   );
 }

@@ -65,8 +65,12 @@ export const styles = StyleSheet.create({
     lineHeight: 19,
     color: '#ffffff',
   },
-  redirectTitle: {
+  buttonRedirect: {
+    alignSelf: 'center',
     marginTop: 16,
+    width: 220,
+  },
+  redirectTitle: {
     textAlign: 'center',
     fontFamily: 'Roboto-Regular',
     fontSize: 16,
