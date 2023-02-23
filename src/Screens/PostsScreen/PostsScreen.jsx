@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Image, FlatList } from 'react-native';
+import { Text, View, Image, FlatList, TouchableOpacity } from 'react-native';
 import { EvilIcons } from '@expo/vector-icons';
 
 import { styles } from './PostsScreen.styled';
@@ -28,13 +28,18 @@ const list = [
   },
 ];
 
-const Item = ({ item }) => (
+const Item = ({ item, navigation }) => (
   <View style={{ marginBottom: 32 }}>
     <Image style={styles.imagePosts} source={{ uri: `${item.url}` }} />
     <Text style={styles.imageTitle}>{item.title}</Text>
     <View style={styles.descriptionContainer}>
       <View style={styles.wrapContainer}>
-        <EvilIcons name="comment" size={24} color="#BDBDBD" />
+        <TouchableOpacity
+          activeOpacity={0.5}
+          onPress={() => navigation.navigate('Comments')}
+        >
+          <EvilIcons name="comment" size={24} color="#BDBDBD" />
+        </TouchableOpacity>
         <Text style={styles.text}>{item.comments}</Text>
       </View>
       <View style={styles.wrapContainer}>
@@ -45,7 +50,7 @@ const Item = ({ item }) => (
   </View>
 );
 
-export const PostsScreen = () => {
+export const PostsScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.containerProfile}>
@@ -65,7 +70,9 @@ export const PostsScreen = () => {
       <View style={{ paddingBottom: 90 }}>
         <FlatList
           data={list}
-          renderItem={({ item }) => <Item item={item} />}
+          renderItem={({ item }) => (
+            <Item navigation={navigation} item={item} />
+          )}
           keyExtractor={item => item.id}
         />
       </View>

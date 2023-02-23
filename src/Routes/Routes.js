@@ -1,8 +1,9 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { RegistrationScreen } from '../Screens/RegistrationScreen';
 import { TouchableOpacity, View, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { RegistrationScreen } from '../Screens/RegistrationScreen';
 
 import { LoginScreen } from '../Screens/LoginScreen';
 import { PostsScreen } from '../Screens/PostsScreen';
@@ -60,6 +61,15 @@ const HomeTab = ({ navigation }) => (
           paddingBottom: 10,
           borderTopColor: 'transparent',
         },
+        headerLeft: () => (
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Posts')}
+            activeOpacity={0.6}
+            style={{ paddingLeft: 16 }}
+          >
+            <Feather name="arrow-left" size={24} color="#BDBDBD" />
+          </TouchableOpacity>
+        ),
         tabBarIcon: ({ focused, size, color }) =>
           focused ? (
             <View style={styles.wrapTabButton}>
@@ -110,9 +120,31 @@ export const chooseNavigation = isLogedIn => {
     );
   }
   return (
-    <HomeStack.Navigator screenOptions={{ headerShown: false }}>
-      <HomeStack.Screen name="Home" component={HomeTab} />
-      <HomeStack.Screen name="Comments" component={CommentsScreen} />
+    <HomeStack.Navigator>
+      <HomeStack.Screen
+        options={{ headerShown: false }}
+        name="Home"
+        component={HomeTab}
+      />
+      <HomeStack.Screen
+        options={{
+          headerBackTitleVisible: false,
+          headerLeft: () => {
+            const navigation = useNavigation();
+            return (
+              <TouchableOpacity
+                onPress={() => navigation.navigate('Home')}
+                activeOpacity={0.6}
+                style={{ paddingLeft: 16 }}
+              >
+                <Feather name="arrow-left" size={24} color="#BDBDBD" />
+              </TouchableOpacity>
+            );
+          },
+        }}
+        name="Comments"
+        component={CommentsScreen}
+      />
       <HomeStack.Screen name="Map" component={MapScreen} />
     </HomeStack.Navigator>
   );
