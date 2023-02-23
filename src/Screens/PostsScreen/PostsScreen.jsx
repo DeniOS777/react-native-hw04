@@ -10,7 +10,7 @@ export const PostsScreen = () => {
         <View style={styles.wrapImage}>
           <Image
             style={styles.image}
-            source={require('../../../assets/dummy_poster.jpg')}
+            source={require('../../../assets/userPhoto.jpg')}
           />
         </View>
 
