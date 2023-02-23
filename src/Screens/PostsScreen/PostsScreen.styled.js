@@ -12,11 +12,11 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 32,
   },
-  wrapImage: {
+  wrapImageProfile: {
     marginRight: 8,
     overflow: 'hidden',
   },
-  image: {
+  imageProfile: {
     width: 60,
     height: 60,
     borderRadius: 16,
@@ -32,5 +32,34 @@ export const styles = StyleSheet.create({
     fontSize: 13,
     lineHeight: 13,
     color: 'rgba(33, 33, 33, 0.8)',
+  },
+  imagePosts: {
+    width: '100%',
+    height: 240,
+    borderRadius: 8,
+    marginBottom: 8,
+  },
+  imageTitle: {
+    marginBottom: 8,
+    fontFamily: 'Roboto-Medium',
+    fontSize: 16,
+    lineHeight: 19,
+    color: '#212121',
+  },
+  descriptionContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  wrapContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  text: {
+    marginLeft: 6,
+    fontFamily: 'Roboto-Regular',
+    fontSize: 16,
+    lineHeight: 19,
+    color: '#BDBDBD',
   },
 });
