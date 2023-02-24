@@ -40,7 +40,7 @@ const HomeTab = ({ navigation }) => (
         ),
         tabBarIcon: ({ focused, size, color }) =>
           focused ? (
-            <View style={styles.wrapTabButton}>
+            <View style={styles.buttonAllPosts}>
               <Ionicons name="ios-grid-outline" size={size} color="#ffffff" />
             </View>
           ) : (
@@ -72,8 +72,8 @@ const HomeTab = ({ navigation }) => (
         ),
         tabBarIcon: ({ focused, size, color }) =>
           focused ? (
-            <View style={styles.wrapTabButton}>
-              <Ionicons name="ios-add" size={size} color="#ffffff" />
+            <View style={styles.buttonAddPost}>
+              <Feather name="trash-2" size={24} color="#BDBDBD" />
             </View>
           ) : (
             <Ionicons name="ios-add" size={size} color={color} />
@@ -89,7 +89,7 @@ const HomeTab = ({ navigation }) => (
         tabBarStyle: { height: 83, paddingBottom: 10, borderTopWidth: 1 },
         tabBarIcon: ({ focused, size, color }) =>
           focused ? (
-            <View style={styles.wrapTabButton}>
+            <View style={styles.buttonProfile}>
               <Feather name="user" size={size} color="#ffffff" />
             </View>
           ) : (
@@ -128,6 +128,7 @@ export const chooseNavigation = isLogedIn => {
       />
       <HomeStack.Screen
         options={{
+          title: 'Комментарии',
           headerBackTitleVisible: false,
           headerLeft: () => {
             const navigation = useNavigation();
@@ -151,7 +152,19 @@ export const chooseNavigation = isLogedIn => {
 };
 
 const styles = StyleSheet.create({
-  wrapTabButton: {
+  buttonAllPosts: {
+    backgroundColor: '#FF6C00',
+    paddingHorizontal: 28,
+    paddingVertical: 13,
+    borderRadius: 30,
+  },
+  buttonAddPost: {
+    backgroundColor: '#F6F6F6',
+    paddingHorizontal: 28,
+    paddingVertical: 13,
+    borderRadius: 30,
+  },
+  buttonProfile: {
     backgroundColor: '#FF6C00',
     paddingHorizontal: 28,
     paddingVertical: 13,
