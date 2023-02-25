@@ -55,11 +55,19 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  text: {
+  textComment: {
     marginLeft: 6,
     fontFamily: 'Roboto-Regular',
     fontSize: 16,
     lineHeight: 19,
     color: '#BDBDBD',
+  },
+  textLocation: {
+    marginLeft: 6,
+    fontFamily: 'Roboto-Regular',
+    fontSize: 16,
+    lineHeight: 19,
+    color: '#212121',
+    textDecorationLine: 'underline',
   },
 });

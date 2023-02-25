@@ -1,6 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import { TouchableOpacity, View, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { RegistrationScreen } from '../Screens/RegistrationScreen';
@@ -23,10 +24,13 @@ const Tab = createBottomTabNavigator();
 const HomeTab = ({ navigation }) => (
   <Tab.Navigator
     initialRouteName="Posts"
-    screenOptions={{ tabBarShowLabel: false }}
+    // screenOptions={{ tabBarShowLabel: false }}
+    screenOptions={({ route }) => ({
+      tabBarShowLabel: false,
+    })}
   >
     <Tab.Screen
-      options={{
+      options={({ route }) => ({
         title: 'Публикации',
         headerTitleAlign: 'center',
         headerStyle: { borderBottomWidth: 1 },
@@ -46,7 +50,7 @@ const HomeTab = ({ navigation }) => (
           ) : (
             <Ionicons name="ios-grid-outline" size={size} color={color} />
           ),
-      }}
+      })}
       name="Posts"
       component={PostsScreen}
     />
@@ -129,6 +133,7 @@ export const chooseNavigation = isLogedIn => {
       <HomeStack.Screen
         options={{
           title: 'Комментарии',
+          headerTitleAlign: 'center',
           headerBackTitleVisible: false,
           headerLeft: () => {
             const navigation = useNavigation();
@@ -146,7 +151,26 @@ export const chooseNavigation = isLogedIn => {
         name="Comments"
         component={CommentsScreen}
       />
-      <HomeStack.Screen name="Map" component={MapScreen} />
+      <HomeStack.Screen
+        options={{
+          title: 'Карта',
+          headerBackTitleVisible: false,
+          headerLeft: () => {
+            const navigation = useNavigation();
+            return (
+              <TouchableOpacity
+                onPress={() => navigation.navigate('Home')}
+                activeOpacity={0.6}
+                style={{ paddingLeft: 16 }}
+              >
+                <Feather name="arrow-left" size={24} color="#BDBDBD" />
+              </TouchableOpacity>
+            );
+          },
+        }}
+        name="Map"
+        component={MapScreen}
+      />
     </HomeStack.Navigator>
   );
 };

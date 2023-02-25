@@ -40,11 +40,16 @@ const Item = ({ item, navigation }) => (
         >
           <EvilIcons name="comment" size={24} color="#BDBDBD" />
         </TouchableOpacity>
-        <Text style={styles.text}>{item.comments}</Text>
+        <Text style={styles.textComment}>{item.comments}</Text>
       </View>
       <View style={styles.wrapContainer}>
         <EvilIcons name="location" size={24} color="#BDBDBD" />
-        <Text style={styles.text}>{item.location}</Text>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Map')}
+          activeOpacity={0.5}
+        >
+          <Text style={styles.textLocation}>{item.location}</Text>
+        </TouchableOpacity>
       </View>
     </View>
   </View>
